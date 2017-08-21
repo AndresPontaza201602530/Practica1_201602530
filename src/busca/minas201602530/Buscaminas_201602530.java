@@ -47,8 +47,15 @@ public class Buscaminas_201602530 {
         System.out.println(""); //Presentacion inicial    
         
         Scanner sc = new Scanner(System.in);
+        int inco=1;
+        while(inco==1){
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
         System.out.println("**********************************************************************");
-        System.out.println("                             BUSCAMINAS                                ");
+        System.out.println("                             BUSCAMINAS        ⊙▂⊙                        ");
         System.out.println("**********************************************************************");
         System.out.println(                               "Menu:");
         System.out.println("                1. Jugar Modo Principiante");
@@ -65,29 +72,41 @@ public class Buscaminas_201602530 {
                 columnas = 5;
                 minas = 4;
                 win = (4 * 4) - 4;
+                inco=0;
                 break;
             case 2:
                 filas = 7;
                 columnas = 7;
                 minas = 8;
                 win = (6 * 6) - 8;
+                inco=0;
                 break;
             case 3:
                 filas = 9;
                 columnas = 9;
                 minas = 12;
                 win = (8 * 8) - 12;
+                inco=0;
                 break;
             case 4:
                 fi = true;
                 System.exit(0);
+                inco=0;
                 break;
             default:
                 System.out.println("Introduce una opción valida!!");
-                System.exit(0);
+                inco=1;
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                //System.exit(0);
                 break;
         }
     }
+   }
+        
         public static void imprTablero(int length, int length0, char[][] matriz) {
         System.out.println("                            Matriz de juego ⊙▂⊙");
         for (int i = 1; i < length; i++) {
@@ -130,7 +149,7 @@ public class Buscaminas_201602530 {
             }
         }
     }
-
+//Llena la matriz de minas
 public static void intrMinas() {
         boolean full = false;
         int i = 0;
@@ -211,6 +230,8 @@ public static void intrMinas() {
             valid = (fi1 < filas && fi2 < columnas) && (fi1 > 0 && fi2 > 0);
         }
     }
+ 
+ 
  public static void Destapa(int casilla, int casilla2) {
         int casillorg = fi1;
         int casill2org = fi2;
@@ -238,15 +259,16 @@ public static void intrMinas() {
                 matriz2[casilla][casilla2] = matriz[casilla][casilla2];
                 ++count;
                 Destapa(casilla + 1, casilla2);
-                Destapa(casilla, casilla2 + 1);
-                Destapa(casilla + 1, casilla2 + 1);
+                Destapa(casilla-1, casilla2);
+                Destapa(casilla, casilla2+1);
+                Destapa(casilla, casilla2 - 1);
             }
             if (casilla > filas - 1 || casilla < 0 || casilla2 > columnas - 1 || casilla2 < 0) {
-                Destapa(casilla, casilla2 - 1);
+                Destapa(casilla+1, casilla2);
                 Destapa(casilla - 1, casilla2);
-                Destapa(casilla - 1, casilla2 - 1);
-                Destapa(casilla - 1, casilla2 + 1);
-                Destapa(casilla + 1, casilla2 - 1);
+                Destapa(casilla, casilla2 );
+                Destapa(casilla, casilla2 );
+                //Destapa(casilla + 1, casilla2 - 1);
             }
         } else if ((matriz[casilla][casilla2] > '0')) {
             if (matriz2[casilla][casilla2] != matriz[casilla][casilla2]) {
@@ -262,12 +284,14 @@ public static void intrMinas() {
 
   
 public static void main(String[] args) throws IOException {
-        
+   
         while (!fi) {
+            int inco2=1;
             count = 0;
             fipartida = false;
             Menu();
             iniciaTablero();
+            while(inco2==1){
             System.out.println("**********************************************************************");
             imprTablero(filas, columnas, matriz2);
             System.out.println("**********************************************************************");
@@ -297,6 +321,7 @@ public static void main(String[] args) throws IOException {
                 introMovim();
                 Destapa(fi1, fi2);
             }
+            inco2=0;
         break;
         case 'v':
         introMovim();
@@ -314,31 +339,44 @@ public static void main(String[] args) throws IOException {
                 introMovim();
                 Destapa(fi1, fi2);
             }
+            inco2=0;
         break;
  
         case 'R':
+        inco2=0;
         //Reiniciar
         break;
         case 'r':       
+        inco2=0;
+        //Reiniciar
         break;
         
         case 's':
+        inco2=0;
         System.out.println("Gracias por jugar buscaminas!");
         System.exit(0);
         break;
         
         case 'S': 
+        inco2=0;
         System.out.println("Gracias por jugar buscaminas!");
         System.exit(0);
         break;
         
         default:
         System.out.println("Introduce una opción valida!!");
-        System.exit(0); 
-                            }
+        //System.exit(0); 
+        inco2=1;
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        
+            }
             
         }
-
+      }
     }
 }
 
