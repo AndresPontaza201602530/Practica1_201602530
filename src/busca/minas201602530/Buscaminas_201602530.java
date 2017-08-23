@@ -64,31 +64,32 @@ public class Buscaminas_201602530 {
         System.out.println("                4. Salir");
         System.out.println("");
         System.out.print("  Selecciona una opción [1-4]: ");
-        int opcion = sc.nextInt();
-        System.out.println("");
+        //int opcion = sc.nextInt();
+        Scanner teclado = new Scanner (System.in);
+        char opcion = teclado.next().charAt(0); 
         switch (opcion) {
-            case 1:
+            case '1':
                 filas = 5;
                 columnas = 5;
                 minas = 4;
                 win = (4 * 4) - 4;
                 inco=0;
                 break;
-            case 2:
+            case '2':
                 filas = 7;
                 columnas = 7;
                 minas = 8;
                 win = (6 * 6) - 8;
                 inco=0;
                 break;
-            case 3:
+            case '3':
                 filas = 9;
                 columnas = 9;
                 minas = 12;
                 win = (8 * 8) - 12;
                 inco=0;
                 break;
-            case 4:
+            case '4':
                 fi = true;
                 System.exit(0);
                 inco=0;
@@ -259,16 +260,16 @@ public static void intrMinas() {
                 matriz2[casilla][casilla2] = matriz[casilla][casilla2];
                 ++count;
                 Destapa(casilla + 1, casilla2);
-                Destapa(casilla-1, casilla2);
+                //Destapa(casilla-1, casilla2);
                 Destapa(casilla, casilla2+1);
-                Destapa(casilla, casilla2 - 1);
+                Destapa(casilla+1, casilla2+1);
             }
             if (casilla > filas - 1 || casilla < 0 || casilla2 > columnas - 1 || casilla2 < 0) {
-                Destapa(casilla+1, casilla2);
-                Destapa(casilla - 1, casilla2);
-                Destapa(casilla, casilla2 );
-                Destapa(casilla, casilla2 );
-                //Destapa(casilla + 1, casilla2 - 1);
+                Destapa(casilla, casilla2-1);
+                Destapa(casilla- 1, casilla2);
+                Destapa(casilla-1, casilla2-1 );
+                Destapa(casilla-1, casilla2+1 );
+                Destapa(casilla + 1, casilla2 - 1);
             }
         } else if ((matriz[casilla][casilla2] > '0')) {
             if (matriz2[casilla][casilla2] != matriz[casilla][casilla2]) {
@@ -282,7 +283,23 @@ public static void intrMinas() {
         }
     }
 
-  
+//Muestra la matriz sin esconder los valores 
+ public static void mostrar(){
+        System.out.println("                          Mastriz Destapada                           ");
+        System.out.println("**********************************************************************");
+         for (char[] matriz1 : matriz) {
+            System.out.print("");
+            for (int y = 0; y < matriz1.length; y++) {
+                System.out.print(matriz1[y]);
+                if (y != matriz1.length - 1) {
+                    System.out.print("\t");
+                }
+            }
+            System.out.println("");
+        }
+        System.out.println("**********************************************************************");
+ }
+
 public static void main(String[] args) throws IOException {
    
         while (!fi) {
@@ -306,9 +323,10 @@ public static void main(String[] args) throws IOException {
             switch (opcion2) {
  
         case 'V':
-        introMovim();
+            introMovim();
             intrMinas();
             checkMinas();
+            mostrar();
             Destapa(fi1, fi2);
             while (!fipartida) {
                 if (debug) {
@@ -327,6 +345,7 @@ public static void main(String[] args) throws IOException {
         introMovim();
             intrMinas();
             checkMinas();
+            mostrar();
             Destapa(fi1, fi2);
             while (!fipartida) {
                 if (debug) {
