@@ -107,7 +107,7 @@ public class Buscaminas_201602530 {
         }
     }
    }
-        
+//Muestra en pantalla la matriz que esconde los valores         
         public static void imprTablero(int length, int length0, char[][] matriz) {
         System.out.println("                            Matriz de juego ⊙▂⊙");
         for (int i = 1; i < length; i++) {
@@ -131,13 +131,15 @@ public class Buscaminas_201602530 {
         }
         
     }
- public static int randNumero(int sup) {
+ 
+//Numero random para la mina 
+        public static int randNumero(int sup) {
         Random rnd = new Random();
         int num = (int) (Math.random() * sup);
         return num;
     }
 
-    
+ //Esconde los valores de la matriz con x   
     public static void iniciaTablero() {
         for (int l = 1; l < filas; l++) {
             for (int m = 1; m < columnas; m++) {
@@ -170,7 +172,7 @@ public static void intrMinas() {
             }
         }
     }
-
+//Verifica si hay mina en la posicion de la matriz 
  public static void checkMinas() {
         int count = 0;
         for (int n = 2; n <= matriz.length - 2; ++n) {
@@ -217,7 +219,7 @@ public static void intrMinas() {
             }
         }
     }
-
+//Introduce fila y Columna 
  public static void introMovim() {
         Scanner sc = new Scanner(System.in);
         boolean valid = false;
@@ -232,7 +234,7 @@ public static void intrMinas() {
         }
     }
  
- 
+ //Muestra mensaje Ganador/Perdedor y compara 
  public static void Destapa(int casilla, int casilla2) {
         int casillorg = fi1;
         int casill2org = fi2;
@@ -279,11 +281,12 @@ public static void intrMinas() {
         }
         if (count == win) {
             System.out.println("Has ganado!!!");
+            System.out.println("Gracias por jugar Buscaminas!!!");
             fipartida = true;
         }
     }
 
-//Muestra la matriz sin esconder los valores 
+//Muestra la matriz sin esconder los valores para hacer pruebas 
  public static void mostrar(){
         System.out.println("                          Mastriz Destapada                           ");
         System.out.println("**********************************************************************");
